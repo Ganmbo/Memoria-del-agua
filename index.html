@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Memoria del Agua — Obra interactiva</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body><div id="startScreen"><div class="panel start-card"><div class="start-art">🌊 🐟 🎨</div><div class="start-warning">Una batalla por la memoria del océano</div><h1>MEMORIA DEL AGUA</h1><p class="start-sub">El mar ya está contaminado. Néxus, el Contaminador, intenta destruirlo.<br><strong>Tú tendrás que pintarlo para devolverle la vida.</strong></p><button id="startButton">▶ COMENZAR</button><div class="start-tip">Pinta el mar · Repara el ecosistema · Derrota al villano</div></div></div>
+
+<div class="app">
+<canvas id="water"></canvas>
+<div id="repairFx" class="repair-fx"></div>
+<div class="ui">
+<header>
+  <div class="kicker">Obra generativa · ODS 6</div>
+  <h1>MEMORIA DEL AGUA</h1>
+  <div class="subtitle">“El agua recuerda nuestras acciones.”</div>
+</header>
+
+<main>
+  <section class="panel boss" id="bossPanel">
+  <div class="boss-avatar" id="bossAvatar">🦑</div>
+  <div>
+    <div class="boss-name">NÉXUS, EL CONTAMINADOR</div>
+    <div class="boss-phase" id="bossPhase">FASE 1 · LA INVASIÓN</div>
+    <div class="boss-bar"><div class="boss-hp" id="bossHp"></div></div>
+    <div class="boss-dialogue" id="bossDialogue">“Este mar me pertenece. Convertiré cada gota en basura.”</div>
+  </div>
+</section>
+
+<section class="panel stats">
+    <div class="stat">
+      <div class="label">Calidad del agua</div>
+      <div class="value"><span id="quality">100</span>%</div>
+      <div class="meter"><div id="qualityBar"></div></div>
+    </div>
+    <div class="stat"><div class="label">Biodiversidad</div><div class="value"><span id="life">100</span>%</div></div>
+    <div class="stat"><div class="label">Estado</div><div class="value" id="state">Agua viva</div></div>
+  </section>
+
+  <section class="panel stage" id="stage">
+    <canvas id="paintCanvas"></canvas>
+    <div class="paintHint" id="paintHint">🎨 Pinta sobre el mar para recuperar el ecosistema</div>
+    <div class="villain-arena">
+      <div class="villain" id="villain">
+        <div class="horn"></div><div class="horn r"></div>
+        <div class="head"><span class="eye l"></span><span class="eye r2"></span><span class="mouth"></span></div>
+        <div class="body"><div class="core"></div></div>
+        <div class="tentacle t1"></div><div class="tentacle t2"></div><div class="tentacle t3"></div>
+      </div>
+      <div class="bubble left" id="bubbleLeft"></div>
+      <div class="bubble right" id="bubbleRight"></div>
+    </div>
+    <div class="message">
+      <h2 id="sceneTitle">El mar está herido. Pinta sobre él para devolverle la vida.</h2>
+      <p id="sceneText">Observa el paisaje. Cada decisión quedará guardada en la memoria del agua.</p>
+    </div>
+  </section>
+
+  <section class="panel actions">
+    <button class="action care" data-action="care">🌱 Cuidar</button>
+    <button class="action recycle" data-action="recycle">♻️ Reciclar</button>
+    <button class="action save" data-action="save">💧 Ahorrar</button>
+    <button class="action danger pollute" data-action="pollute">🏭 Contaminar</button>
+    <button class="action" id="sound">🎵 Escuchar</button>
+    <button class="action erase" id="erase">⌫ Borrar</button>
+    <button class="action brush active" data-brush="8">🖌️ Fino</button>
+    <button class="action brush" data-brush="20">🖌️ Medio</button>
+    <button class="action brush" data-brush="38">🖌️ Grueso</button>
+  </section>
+
+  <section class="bottom">
+    <div class="panel memory">
+      <h3>Tu memoria del agua</h3>
+      <div class="memory-grid">
+        <div><b id="careCount">0</b>Cuidaste</div>
+        <div><b id="recycleCount">0</b>Reciclaste</div>
+        <div><b id="saveCount">0</b>Ahorros</div>
+        <div><b id="polluteCount">0</b>Contaminaste</div>
+      </div>
+    </div>
+    <div class="panel info">
+      <h3>Una obra que responde</h3>
+      <p>Las acciones modifican variables, color, partículas, organismos, ondas y sonido. El resultado final se convierte en una composición generativa única.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <button class="secondary" id="newVillain">👹 Invocar otro villano</button>
+  <button class="secondary" id="final">✦ Ver mi obra final</button>
+  <button class="secondary" id="reset">↻ Reiniciar memoria</button>
+  <button class="secondary" id="ods">ODS 6 · ¿Por qué?</button>
+</footer>
+</div>
+</div>
+
+<div class="overlay gameover" id="gameover">
+  <div class="card death-card">
+    <div class="death-symbol">☠️</div>
+    <h2>EL MAR HA MUERTO</h2>
+    <p id="deathText">La contaminación alcanzó el 100%. Néxus ganó esta batalla.</p>
+    <button class="action" id="restartDeath">↻ Intentar de nuevo</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="card">
+    <button class="secondary close" id="close">Cerrar</button>
+    <h2 id="overlayTitle">Tu memoria del agua</h2>
+    <div id="overlayBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
